@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>FabConnections MCU</title>
+<script type="text/javascript" src="jquery.min.js" ></script>
+<script type="text/javascript" src="jquery.blockUI.js" ></script>
+<script type="text/javascript" src="js/bootstrap.js"></script>
+<script type="text/javascript" src="js/bootbox.min.js"></script>
+<script type="text/javascript" src="js/spin.min.js"></script>
+<script type="text/javascript" src="janus.js" ></script>
+<script src="jquery.hipchat.js" type="text/javascript"></script>
+<script type="text/javascript" src="chat.js"></script>
+<link rel="stylesheet" href="css/paper.css" type="text/css"/>
+<link rel="stylesheet" href="css/demo.css" type="text/css"/>
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css"/>
+<body>
+
+<nav class="navbar navbar-default navbar-static-top">
+<div class="container">
+	<div class="navbar-header">
+		<a class="navbar-brand" href="index.html">MCU</a>
+		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+		</button>
+	</div>
+	<div class="navbar-collapse collapse">
+		<ul class="nav navbar-nav">
+			<li><a href="index.html">Home</a></li>
+		</ul>
+
+<div class="navbar-header navbar-right">
+			<ul class="nav navbar-nav">
+			<li><a chref="#" id="start">Join</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+</nav>
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="page-header">
+				<h4>Little Cute MCU</h4>
+			</div>
+			<div class="container" id="details">
+				<div class="row">
+					<div class="col-md-12">
+						<h5>Instructions</h5>						
+						<p>Hit <code>Join</code> button on the top right to connect.</p>
+						<h5>Supported browsers</h5>
+						<p>Latest versions of Google Chrome and Mozilla Firefox</p>
+					</div>
+				</div>
+			</div>
+			<div class="container hide" id="videojoin">
+				<div class="row">
+					<span class="label label-info" id="you"></span>
+					<div class="col-md-offset-3 col-md-6" id="controls">
+						<div class="input-group margin-bottom-md hide" id="registernow">
+							<span class="input-group-addon">@</span>
+							<input autocomplete="off" class="form-control" autocomplete="off" type="text" placeholder="Choose a display name" id="username" onkeypress="return checkEnter(this, event);"></input>
+						</div>
+						<div class="input-group text-right">
+							<span class="input-group-btn">
+								<button class="btn btn-success" autocomplete="off" id="register">Join the Conference</button>
+							</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="container hide" id="videos">
+				<div class="row">
+					<div class="col-md-8">
+						<div class="panel">
+							<div class="panel-body">
+								<div id="mainstage">
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h3 class="panel-title">Local Video <span class="label label-primary hide" id="publisher"></span></h3>
+							</div>
+							<div class="panel-body"><div id="videolocal"></div>
+</div>
+
+							<div class="panel-footer " id="videolocal-footer">
+								<div class="text-right">
+									<button class="btn btn-warning btn-xs" id="unpublish">Unpublish</button>
+									<button class="btn btn-success btn-xs" id="localMute" style="display: hidden">Mute</button>										
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+				<div class="row">
+					
+					<div class="col-md-2">					
+						<div class="panel panel-default" id="videoremote1-panel">
+								<div class="panel-heading">
+									<h3 class="panel-title">Remote Video #1 <span class="label label-info hide" id="remote1"></span></h3>
+							</div>
+							<div class="panel-body relative" id="videoremote1"></div>
+						</div>
+					</div>
+					<div class="col-md-2">
+						
+						<div class="panel panel-default" id="videoremote2-panel">
+							<div class="panel-heading">
+								<h3 class="panel-title">Remote Video #2 <span class="label label-info hide" id="remote2"></span></h3>
+							</div>
+							<div class="panel-body relative" id="videoremote2"></div>
+						</div>
+					</div>
+					<div class="col-md-2">
+						<div class="panel panel-default" id="videoremote3-panel">
+							<div class="panel-heading">
+								<h3 class="panel-title">Remote Video #3 <span class="label label-info hide" id="remote3"></span></h3>
+							</div>
+							<div class="panel-body relative" id="videoremote3"></div>
+						</div>
+					</div>
+					<div class="col-md-2">
+						<div class="panel panel-default" id="videoremote4-panel">
+							<div class="panel-heading">
+								<h3 class="panel-title">Remote Video #4 <span class="label label-info hide" id="remote4"></span></h3>
+							</div>
+							<div class="panel-body relative" id="videoremote4"></div>
+						</div>
+					</div>
+					<div class="col-md-2">
+						<div class="panel panel-default" id="videoremote5-panel">
+							<div class="panel-heading">
+								<h3 class="panel-title">Remote Video #5 <span class="label label-info hide" id="remote5"></span></h3>
+							</div>
+							<div class="panel-body relative" id="videoremote5"></div>
+						</div>
+					</div>
+					<div class="col-md-2">
+						<div class="panel panel-default" id="videoremote6-panel">
+							<div class="panel-heading">
+								<h3 class="panel-title">Remote Video #6 <span class="label label-info hide" id="remote6"></span></h3>
+							</div>
+							<div class="panel-body relative" id="videoremote6"></div>
+						</div>
+					</div>
+
+				</div>
+				<div class="row">
+					
+					
+					<div class="col-md-2">
+						<div class="panel panel-default" id="videoremote7-panel">
+							<div class="panel-heading">
+								<h3 class="panel-title">Remote Video #7 <span class="label label-info hide" id="remote7"></span></h3>
+							</div>
+							<div class="panel-body relative" id="videoremote7"></div>
+						</div>
+					</div>
+					
+					<div class="col-md-2">
+						<div class="panel panel-default" id="videoremote8-panel">
+							<div class="panel-heading">
+								<h3 class="panel-title">Remote Video #8 <span class="label label-info hide" id="remote8"></span></h3>
+							</div>
+							<div class="panel-body relative" id="videoremote8"></div>
+						</div>
+					</div>
+					
+					<div class="col-md-2">
+						<div class="panel panel-default" id="videoremote9-panel">
+							<div class="panel-heading">
+								<h3 class="panel-title">Remote Video #9 <span class="label label-info hide" id="remote9"></span></h3>
+							</div>
+							<div class="panel-body relative" id="videoremote9"></div>
+						</div>
+					</div>
+					
+					<div class="col-md-2">
+						<div class="panel panel-default" id="videoremote10-panel">
+							<div class="panel-heading">
+								<h3 class="panel-title">Remote Video #10 <span class="label label-info hide" id="remote10"></span></h3>
+							</div>
+							<div class="panel-body relative" id="videoremote10"></div>
+						</div>
+					</div>
+					<div class="col-md-2">
+						<div class="panel panel-default" id="videoremote11-panel">
+							<div class="panel-heading">
+								<h3 class="panel-title">Remote Video #11 <span class="label label-info hide" id="remote11"></span></h3>
+							</div>
+							<div class="panel-body relative" id="videoremote11"></div>
+						</div>
+					</div>
+					<div class="col-md-2">
+						<div class="panel panel-default" id="videoremote12-panel">
+							<div class="panel-heading">
+								<h3 class="panel-title">Remote Video #12 <span class="label label-info hide" id="remote12"></span></h3>
+							</div>
+							<div class="panel-body relative" id="videoremote12"></div>
+						</div>
+					</div>
+
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+<div id="chatpanel"></div>
+				</div></div>
+
+			</div>
+		</div>
+	</div>
+
+	<hr>
+	<div class="footer">
+	
+	</div>
+</div>
+
+</body>
+</html>
